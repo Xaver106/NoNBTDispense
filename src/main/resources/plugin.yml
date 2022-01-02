@@ -1,0 +1,6 @@
+name: NoNBTDispense
+version: '${project.version}'
+main: com.xaver106.nonbtdispense.NoNBTDispense
+api-version: 1.17
+authors: [ Xaver106 ]
+description: Blocks Spawn Eggs from dispensing with NBTTags

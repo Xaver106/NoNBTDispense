@@ -10,7 +10,6 @@ import com.sk89q.worldguard.protection.flags.Flag;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,16 +18,11 @@ import java.util.logging.Level;
 
 public final class NoNBTDispense extends JavaPlugin implements Listener {
 
-    public static HashMap<String, StateFlag> FLAGS;
-    FileConfiguration config;
+    public HashMap<String, StateFlag> flags;
 
     @Override
     public void onEnable() {
-        // saveDefaultConfig();
-        // config = getConfig();
-
-        getServer().getPluginManager().registerEvents(new Listeners(FLAGS, this), this);
-
+        getServer().getPluginManager().registerEvents(new Listeners(flags, this), this);
     }
 
     @Override
@@ -43,15 +37,18 @@ public final class NoNBTDispense extends JavaPlugin implements Listener {
      */
     private void register_flag(StateFlag flag) {
         FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
+        if (this.flags == null){
+            this.flags = new HashMap<>();
+        }
         try {
             registry.register(flag);
-            FLAGS.put(flag.getName(), flag);
+            this.flags.put(flag.getName(), flag);
         } catch (FlagConflictException e) {
-            Flag<?> existing = registry.get("my-custom-flag");
+            Flag<?> existing = registry.get(flag.getName());
             if (existing instanceof StateFlag) {
-                FLAGS.put(existing.getName(), (StateFlag) existing);
+                this.flags.put(existing.getName(), (StateFlag) existing);
             } else {
-                this.getLogger().log(Level.SEVERE, "Flag: " + flag.toString() + " could not be registered!");
+                this.getLogger().log(Level.SEVERE, "Flag: " + flag.getName() + " could not be registered!");
             }
         }
     }

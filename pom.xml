@@ -6,7 +6,7 @@
 
     <groupId>com.xaver106</groupId>
     <artifactId>noNBTDispense</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>NoNBTDispense</name>
@@ -51,14 +51,6 @@
                             <shadedPattern>com.xaver106.nonbtdispense</shadedPattern>
                         </relocation>
                     </relocations>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <outputDirectory>C:\Users\xaver\Desktop\Testserver\plugins</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

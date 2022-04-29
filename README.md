@@ -1,3 +1,5 @@
+# Archived! New Repository [https://github.com/RedstoneWorld/RedWorldguardFlags](https://github.com/RedstoneWorld/RedWorldguardFlags)
+
 # NoNBTDispense
 A small Plugin designed to block Spawn Eggs with custom EntityTag NBT to be dispensed with the use of a WorldGuard Flag.
 
